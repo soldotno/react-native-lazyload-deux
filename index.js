@@ -5,9 +5,9 @@ import LazyloadScrollView from './lib/LazyloadScrollView';
 import LazyloadManager from './lib/LazyloadManager';
 
 export {
-    LazyloadImage,
-    LazyloadView,
-    LazyloadListView,
-    LazyloadScrollView,
-    LazyloadManager
+  LazyloadImage,
+  LazyloadView,
+  LazyloadListView,
+  LazyloadScrollView,
+  LazyloadManager,
 };
