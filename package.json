@@ -4,13 +4,26 @@
     "description": "Lazyload for React Native",
     "license": "MIT",
     "main": "./index.js",
+    "scripts": {
+        "test": "eslint . --max-warnings=0"
+    },
     "repository": {
         "type": "git",
         "url": "https://github.com/soldotno/react-native-lazyload-deux"
     },
     "dependencies": {
         "prop-types": "15.6.0",
+        "react": "16.0.0",
+        "react-native": "0.49.5",
         "react-native-scrollable-mixin": "1.0.1"
+    },
+    "devDependencies": {
+        "@aller/eslint-config-aller": "0.3.0",
+        "babel-eslint": "8.0.1",
+        "eslint": "4.10.0",
+        "eslint-plugin-import": "2.8.0",
+        "eslint-plugin-jsx-a11y": "5.0.3",
+        "eslint-plugin-react": "7.4.0"
     },
     "keywords": [
         "react-component",
