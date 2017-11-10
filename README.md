@@ -149,7 +149,7 @@ Based on View component. This component's content won't be rendered util it scro
 
 #### Example
 
-See [LazyloadListView example](https://github.com/soldotno/react-native-lazyload-deux#lazyloadscrollview) above.
+See [LazyloadListView example](https://github.com/soldotno/react-native-lazyload-deux#example) above.
 
 ### LazyloadImage
 
@@ -163,7 +163,7 @@ Based on Image component. The image content won't be rendered util it scrolls in
 
 #### Example
 
-See [LazyloadListView example](https://github.com/soldotno/react-native-lazyload-deux#lazyloadscrollview) above.
+See [LazyloadListView example](https://github.com/soldotno/react-native-lazyload-deux#example) above.
 
 ## Complete example
 
