@@ -1,4 +1,4 @@
-### react-native-lazyload-deux
+# react-native-lazyload-deux
 ------------------------
 
 A lazyload components suit for React Native.
