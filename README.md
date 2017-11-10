@@ -1,4 +1,4 @@
-### react-native-lazyload
+### react-native-lazyload-deux
 
 ------------------------
 
