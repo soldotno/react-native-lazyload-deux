@@ -1,117 +1,172 @@
 ### react-native-lazyload-deux
-
 ------------------------
 
-A \`lazyload\` components suit for React Native.
+A lazyload components suit for React Native.
 
 Forked from [react-native-lazyload](https://github.com/magicismight/react-native-lazyload) as it seems to be no longer maintained.
 
-#### Install
+## Install
 
 ```
 npm install react-native-lazyload-deux
 ```
 
-#### Components
 
-Component           | Description
-------------------- | --------------------
-LazyloadScrollView  | A lazyload container component based on `ScrollView`
-LazyloadListView    | A lazyload container component based on `ListView`
-LazyloadView        | Based on View component. This component\`s content won\`t be rendered util it scrolls into sight. It should be inside a `LazyloadScrollView` or `LazyloadListView` which has the same `name` prop as this component\`s host prop.
-LazyloadImage       | Based on Image component. The image content won\`t be rendered util it scrolls into sight. It should be inside a `LazyloadScrollView` or `LazyloadListView` which has the same `name` prop as this component\`s host prop.
+## Usage
 
-#### Usage
+### LazyloadScrollView
 
-##### LazyloadScrollView
+A lazyload container component based on `ScrollView`
 
-1. Using `LazyloadScrollView` instead of `ScrollView`, and specify a unique id for `name` prop.
-2. Layout the views or images which will be lazyloaded by using `LazyloadView` and `LazyloadImage` instead of `View` or `Image`.
-3. Specify `host` prop for every `LazyloadView` and `LazyloadImage`, the `host` prop should be same as outer `LazyloadScrollView` component`s name prop.
+#### Props
+
+* [ScrollView](https://facebook.github.io/react-native/docs/scrollview.html#props).
+* `name`: Unique name of scroll view.
+* `renderDistance`: Offset of pixels before to start rendering.
+* `recycle`:
+* `recycleDistance`:
+* `horizontal`:
+
+#### Functions
+
+*  `refresh`: Force to trigger an update. Useful after nagivation pop/push where the memory may have been released.
+
+#### Example
 
 ```js
-import React, {
-    Component
-} from 'react-native';
+import React, { Component } from 'react-native';
+import { LazyloadScrollView, LazyloadView, LazyloadImage } from 'react-native-lazyload-deux';
 
-import {
-    LazyloadScrollView,
-    LazyloadView,
-    LazyloadImage
-} from 'react-native-lazyload';
+const views = [
+  {
+    title: 'A view',
+    image: 'https://example.org/1.png',
+  },
+  {
+    title: 'Another view',
+    image: 'https://example.org/2.png',
+  }
+];
 
-const list = [...list data here]; // many rows
+class LazyloadScrollViewExample extends Component {
+  renderViews() {
+    return views.map((view, i) => {
+      return (
+        <LazyloadView
+          host="unique-lazyload-list-name"
+          key={`${view.title}-${i}`}
+        >
+          <Text>{view.title}</Text>
+          <LazyloadImage
+            host="unique-lazyload-list-name"
+            source={view.image}
+          />
+        </LazyloadView>
+      );
+    });
+  }
 
-class LazyloadScrollViewExample extends Component{
-    render() {
-        return (
-            <LazyloadScrollView
-                style={styles.container}
-                contentContainerStyle={styles.content}
-                name="lazyload-list"
-            >
-                {list.map((file, i) => <View
-                    key={i}
-                    style={styles.view}
-                >
-                    <LazyloadView
-                        host="lazyload-list"
-                        style={styles.file}
-                    >
-                        <View style={styles.id}>
-                            <Text style={styles.idText}>{file.id}</Text>
-                        </View>
-                        <View style={styles.detail}>
-                            <Text style={styles.name}>{file.first_name} {file.last_name}</Text>
-                            <Text><Text style={styles.title}>email: </Text><Text style={styles.email}>{file.email}</Text></Text>
-                            <Text style={styles.ip}><Text style={styles.title}>last visit ip: </Text>{file.ip_address}</Text>
-                        </View>
-                    </LazyloadView>
-                    <View style={styles.avatar}>
-                        <LazyloadImage
-                            host="lazyload-list"
-                            style={styles.avatarImage}
-                            source={file.avatar}
-                        />
-                    </View>
-                </View>)}
-            </LazyloadScrollView>
-        );
-    }
+  render() {
+    return (
+      <LazyloadScrollView
+        name="unique-lazyload-list-name"
+      >
+        {this.renderView()}
+      </LazyloadScrollView>
+    );
+  }
 }
-
 ```
 
-##### LazyloadListView
+### LazyloadListView
 
-Same as ListView. But it won\`t  render `LazyloadView` and `LazyloadImage` inside it, util they are scrolled into sight.
+A lazyload container component based on `ListView`. Won't render `LazyloadView` and `LazyloadImage` until they are visible on screen.
 
-### Additional Methods
+#### Props
 
-*refresh* - Force to trigger an update.  Useful after nagivation pop/push where the memory may have been release.
+* [ListView](https://facebook.github.io/react-native/docs/listview.html#props).
 
-### Additional Props
+#### Functions
 
-Components that extend LazyloadView can accept a prop (function) to be called when the item's visibility changes.
+*  `refresh`: Force to trigger an update. Useful after nagivation pop/push where the memory may have been released.
 
-*onVisibilityChange* - An optional function to be called with the new visibility, ref, and props
+#### Example
 
-Example:
+```js
+import React, { Component } from 'react-native';
+import { LazyloadScrollView, LazyloadView, LazyloadImage } from 'react-native-lazyload-deux';
 
-```
+const views = [
+  {
+    title: 'A view',
+    image: 'https://example.org/1.png',
+  },
+  {
+    title: 'Another view',
+    image: 'https://example.org/2.png',
+  }
+];
 
-<LazyloadView onVisibilityChange={ this.handleItemVisibility }>
-...
-</LazyloadView>
+class LazyloadListViewExample extends Component {
+  renderViews() {
+    return views.map((view, i) => {
+      return (
+        <LazyloadView
+          host="unique-lazyload-list-name"
+          key={`${view.title}-${i}`}
+        >
+          <Text>{view.title}</Text>
+          <LazyloadImage
+            host="unique-lazyload-list-name"
+            source={view.image}
+          />
+        </LazyloadView>
+      );
+    });
+  }
 
-...
-
-handleItemVisibility(visibility, ref, props) {
-    console.log('visibility, ref, props', visibility, ref, props);
+  render() {
+    return (
+      <LazyloadListView
+        name="unique-lazyload-list-name"
+      >
+        {this.renderView()}
+      </LazyloadListView>
+    );
+  }
 }
-
 ```
-#### Run Example
+
+### LazyloadView
+
+Based on View component. This component's content won't be rendered util it scrolls into sight. It should be inside a `LazyloadScrollView` or `LazyloadListView` which has the same `name` prop as this component's host prop.
+
+#### Props
+
+* [View](https://facebook.github.io/react-native/docs/view.html#props).
+* `host`: The unique name of it's container
+* `onVisibilityChange`: Callback for when the view is visible.
+* `animation`: Lazyload animation
+
+#### Example
+
+See [LazyloadListView example](https://github.com/soldotno/react-native-lazyload-deux#lazyloadscrollview) above.
+
+### LazyloadImage
+
+Based on Image component. The image content won't be rendered util it scrolls into sight. It should be inside a `LazyloadScrollView` or `LazyloadListView` which has the same `name` prop as this component's host prop.
+
+#### Props
+
+* [Image](https://facebook.github.io/react-native/docs/image.html#props).
+* `host`: The unique name of it's container
+* `animation`: Lazyload animation
+
+#### Example
+
+See [LazyloadListView example](https://github.com/soldotno/react-native-lazyload-deux#lazyloadscrollview) above.
+
+## Complete example
 
 Clone this repository from Github and cd to 'Example' directory then run `npm install`.
 
