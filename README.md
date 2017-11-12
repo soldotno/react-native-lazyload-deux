@@ -53,7 +53,7 @@ class LazyloadScrollViewExample extends Component {
       return (
         <LazyloadView
           host="unique-lazyload-list-name"
-          key={`${view.title}-${i}`}
+          key={`lazy-scroll-view-${i}`}
         >
           <Text>{view.title}</Text>
           <LazyloadImage
@@ -112,7 +112,7 @@ class LazyloadListViewExample extends Component {
       return (
         <LazyloadView
           host="unique-lazyload-list-name"
-          key={`${view.title}-${i}`}
+          key={`lazy-list-view-${i}`}
         >
           <Text>{view.title}</Text>
           <LazyloadImage
