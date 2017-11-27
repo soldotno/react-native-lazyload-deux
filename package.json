@@ -1,6 +1,6 @@
 {
     "name": "react-native-lazyload-deux",
-    "version": "2.0.2",
+    "version": "2.0.3",
     "description": "Lazyload for React Native",
     "license": "MIT",
     "main": "./index.js",
