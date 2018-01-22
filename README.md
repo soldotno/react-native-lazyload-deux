@@ -1,3 +1,5 @@
+This package is no longer maintained, as [FlatList](https://facebook.github.io/react-native/docs/flatlist.html) solves our needs.
+
 # react-native-lazyload-deux
 
 A lazyload components suit for React Native.
